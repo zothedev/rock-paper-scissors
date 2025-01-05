@@ -58,7 +58,16 @@ function isValidAnswer(userChoice) {
     return true;
 }
 
-function playRound(userChoice, computerChoice) {
+// this function plays 1 round of rock paper scissors
+function playRound() {
+
+    // assign user and computer selections
+    const userChoice = getUserChoice();
+    const computerChoice = getComputerChoice();
+
+    // print the selections to console
+    console.log("User Chooses " + userChoice);
+    console.log("Computer Chooses " + computerChoice);
 
     // user enters rock
     if (userChoice === "rock") {
@@ -107,26 +116,24 @@ function playRound(userChoice, computerChoice) {
     }
 }
 
+// this function is called when the user wins.
+// it adds a point to the user and prints a string to console
 function userWin(userChoice, computerChoice) {
     userScore++;
     console.log("You win! " + userChoice + " beats " + computerChoice);
 }
 
+// this function is called when the computer wins.
+// it adds a point to the computer and prints a string to console
 function userLose(userChoice, computerChoice) {
     computerScore++;
     console.log("You lose! " + computerChoice + " beats " + userChoice);
 }
 
+// this function is called when the user and computer tie.
+// it prints a string to console
 function userTie(userChoice, computerChoice) {
     console.log("Tie! " + userChoice + " is equal to " + computerChoice);
 }
 
-
-
-const userSelection = getUserChoice();
-const computerSelection = getComputerChoice();
-
-console.log("User Chooses " + userSelection);
-console.log("Computer Chooses " + computerSelection);
-
-playRound(userSelection, computerSelection);
+playRound();
