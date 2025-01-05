@@ -136,5 +136,17 @@ function userTie(userChoice, computerChoice) {
 function playGame() {
     let userScore = 0;
     let computerScore = 0;
+
+    let round = 1;
+    while (round <= 5) {
+        playRound();
+
+        round++;
+    }
 }
-playRound();
+
+playGame();
+
+// currently, the userWin(), userLose(), and userTie() funcs return a string saying who won with what selections. It also attempts to increment the score vars from those funcs, but cannot access them since the score vars have been moved into the playGame() function.
+
+// my idea is to pass the user and computer scores into the playRound() funcs along with the user and computer selections. So at the end of the playRound(), we can modify the scores based on the winner (via the selections)
