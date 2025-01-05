@@ -1,6 +1,3 @@
-let userScore = 0;
-let computerScore = 0;
-
 function getComputerChoice() {
     // make computer choice (0 to 2)
     let number = randomIntFromZeroAndTwo();
@@ -136,4 +133,8 @@ function userTie(userChoice, computerChoice) {
     console.log("Tie! " + userChoice + " is equal to " + computerChoice);
 }
 
+function playGame() {
+    let userScore = 0;
+    let computerScore = 0;
+}
 playRound();
