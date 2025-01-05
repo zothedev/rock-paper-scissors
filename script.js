@@ -21,7 +21,6 @@ function getComputerChoice() {
 let randomIntFromZeroAndTwo = () => Math.floor(Math.random() * 3)
 
 // console.log(getComputerChoice());
-
 function getUserChoice() {
 
     // run this loop until user enters a valid answer
@@ -66,56 +65,63 @@ function playRound(userChoice, computerChoice) {
 
         // computer enters scissors
         if (computerChoice === "scissors") {
-            userScore++;
-            return "You win! " + userChoice + " beats " + computerChoice;
-        }
-    
-        // computer enters paper
-        if (computerChoice === "paper") {
-            computerScore++;
-            return "You lose! " + computerChoice + " beats " + userChoice;
+            userWin(userChoice, computerChoice);
+        } else if (computerChoice === "paper") {
+            // computer enters paper
+            userLose(userChoice, computerChoice);
+        } else {
+            // computer enters rock
+            userTie(userChoice, computerChoice);
         }
 
-        // computer enters rock
-        return "Tie! " + userChoice + " and " + computerChoice + " are equal!"
+        
 
         // user enters paper
     } else if (userChoice === "paper") {
 
         // computer enters rock
         if (computerChoice === "rock") {
-            userScore++;
-            return "You win! " + userChoice + " beats " + computerChoice;
-        }
-    
-        // computer enters scissors
-        if (computerChoice === "scissors") {
-            computerScore++;
-            return "You lose! " + computerChoice + " beats " + userChoice;
+            userWin(userChoice, computerChoice);
+        } else if (computerChoice === "scissors") {
+            // computer enters scissors
+            userLose(userChoice, computerChoice);
+        } else {
+            // computer enters paper
+            userTie(userChoice, computerChoice);
         }
 
-        // computer enters paper
-        return "Tie! " + userChoice + " and " + computerChoice + " are equal!"
 
         // user enters scissors
     } else {
 
         // computer enters paper
         if (computerChoice === "paper") {
-            userScore++;
-            return "You win! " + userChoice + " beats " + computerChoice;
+            userWin(userChoice, computerChoice);
+        } else if (computerChoice === "rock") {
+            // computer enters rock
+            userLose(userChoice, computerChoice);
+        } else {
+            // computer enters scissors
+            userTie(userChoice, computerChoice);
         }
-    
-        // computer enters rock
-        if (computerChoice === "rock") {
-            computerScore++;
-            return "You lose! " + computerChoice + " beats " + userChoice;
-        }
-
-        // computer enters scissors
-        return "Tie! " + userChoice + " and " + computerChoice + " are equal!"
     }
 }
+
+function userWin(userChoice, computerChoice) {
+    userScore++;
+    console.log("You win! " + userChoice + " beats " + computerChoice);
+}
+
+function userLose(userChoice, computerChoice) {
+    computerScore++;
+    console.log("You lose! " + computerChoice + " beats " + userChoice);
+}
+
+function userTie(userChoice, computerChoice) {
+    console.log("Tie! " + userChoice + " is equal to " + computerChoice);
+}
+
+
 
 const userSelection = getUserChoice();
 const computerSelection = getComputerChoice();
@@ -123,4 +129,4 @@ const computerSelection = getComputerChoice();
 console.log("User Chooses " + userSelection);
 console.log("Computer Chooses " + computerSelection);
 
-console.log(playRound(userSelection, computerSelection));
+playRound(userSelection, computerSelection);
