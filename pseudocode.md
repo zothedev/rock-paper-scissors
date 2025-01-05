@@ -1,9 +1,3 @@
-Todo:
-- Change the user input system from numbers to strings. User should enter rock, paper, or scissors. Make sure i check that their text is valid and convert it to Capital-Case.
-- BUG: when user input is incorrectly entered, the round plays anyway keeping the users prev. selection. this bug might be solved with the multiple round feature or modifying the above bullet points logic
-
-
-
 # Pseudocode for Rock Paper Scissors Project
 
 ## 1. Computer Rock Paper Scissors Choice Logic
@@ -44,3 +38,17 @@ function getUserChoice() {
 
 **Problem:** "I need to take the userChoice and computerChoice and pass them into a function that handles a single round of play. This function should handle playing the round, incrementing the round's winner score, and logging a winner in the console."
 
+## 4. Write Logic to Play the Entire Game
+
+**Problem:** "I need to use the existing `playRound()` function from step #3 and use it within a new `playGame()` function which allows the game to repeat for 5 rounds. Between the user and computer, whoever has a higher score after 5 rounds wins! This will involve moving the `playRound()` function and score variables within the `playGame()` function."
+
+```
+function playRound() {
+    declare userScore at 0
+    declare computerScore at 0
+
+    declare round to 1
+    while round is less than or equal to 5:
+        playRound()
+        modify the playRound() function to include the userSelection and computerSelection within the function, instead of in global scope.
+}
