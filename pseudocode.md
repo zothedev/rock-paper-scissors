@@ -1,3 +1,9 @@
+Todo:
+- Change the user input system from numbers to strings. User should enter rock, paper, or scissors. Make sure i check that their text is valid and convert it to Capital-Case.
+- BUG: when user input is incorrectly entered, the round plays anyway keeping the users prev. selection. this bug might be solved with the multiple round feature or modifying the above bullet points logic
+
+
+
 # Pseudocode for Rock Paper Scissors Project
 
 ## 1. Computer Rock Paper Scissors Choice Logic

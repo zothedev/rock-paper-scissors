@@ -59,7 +59,68 @@ function isValidAnswer(userChoice) {
     return true;
 }
 
-// testing
-console.log("User Choice: " + getUserChoice());
-console.log("Computer Choice: " + getComputerChoice());
+function playRound(userChoice, computerChoice) {
 
+    // user enters rock
+    if (userChoice === "rock") {
+
+        // computer enters scissors
+        if (computerChoice === "scissors") {
+            userScore++;
+            return "You win! " + userChoice + " beats " + computerChoice;
+        }
+    
+        // computer enters paper
+        if (computerChoice === "paper") {
+            computerScore++;
+            return "You lose! " + computerChoice + " beats " + userChoice;
+        }
+
+        // computer enters rock
+        return "Tie! " + userChoice + " and " + computerChoice + " are equal!"
+
+        // user enters paper
+    } else if (userChoice === "paper") {
+
+        // computer enters rock
+        if (computerChoice === "rock") {
+            userScore++;
+            return "You win! " + userChoice + " beats " + computerChoice;
+        }
+    
+        // computer enters scissors
+        if (computerChoice === "scissors") {
+            computerScore++;
+            return "You lose! " + computerChoice + " beats " + userChoice;
+        }
+
+        // computer enters paper
+        return "Tie! " + userChoice + " and " + computerChoice + " are equal!"
+
+        // user enters scissors
+    } else {
+
+        // computer enters paper
+        if (computerChoice === "paper") {
+            userScore++;
+            return "You win! " + userChoice + " beats " + computerChoice;
+        }
+    
+        // computer enters rock
+        if (computerChoice === "rock") {
+            computerScore++;
+            return "You lose! " + computerChoice + " beats " + userChoice;
+        }
+
+        // computer enters scissors
+        return "Tie! " + userChoice + " and " + computerChoice + " are equal!"
+    }
+}
+
+const userSelection = getUserChoice();
+const computerSelection = getComputerChoice();
+
+console.log("User Chooses " + userSelection);
+console.log("Computer Chooses " + computerSelection);
+
+console.log(playRound(userSelection, computerSelection));
