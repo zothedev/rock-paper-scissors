@@ -48,7 +48,7 @@ function getUserChoice() {
 // this function returns true only if the userChoice is valid (0 to 2)
 function isValidAnswer(userChoice) {
     // return false if userChoice is not a number
-    if (userChoice == NaN) {
+    if (Number.isNaN(userChoice)) {
         return false;
     }
     // return false if the userChoice is outside of 0 to 2 (inclusive)
