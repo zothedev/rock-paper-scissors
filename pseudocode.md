@@ -18,7 +18,7 @@ function getComputerChoice() {
 
 ## 2. Write Logic to get Users Choice
 
-**Problem:** "I need to prompt the user for input in the form of numbers. After confirming that the input is valid, I will convert the chosen number into either rock, paper, or scissors and return it as the userChoice."
+**Problem:** "I need to prompt the user for input in the form of numbers. After confirming that the input is valid, I will convert the chosen number into either rock, paper, or scissors and return it as the `userChoice`."
 
 ```
 function getUserChoice() {
@@ -36,7 +36,17 @@ function getUserChoice() {
 
 ## 3. Write Logic to Play a Single Round
 
-**Problem:** "I need to take the userChoice and computerChoice and pass them into a function that handles a single round of play. This function should handle playing the round, incrementing the round's winner score, and logging a winner in the console."
+**Problem:** "I need to take the `userChoice` and `computerChoice` and pass them into a function that handles a single round of play. This function should handle playing the round, incrementing the round's winner score, and logging a winner in the console."
+
+```
+generate user choice by calling `getUserChoice()`
+generate computer choice by calling `getComputerChoice()`
+Display these selections to the console
+Using If-Else statements, determine who won based on the selections.
+print who won to the console.
+return 0 for a computer win, and 1 for a user win
+```
+
 
 ## 4. Write Logic to Play the Entire Game
 
