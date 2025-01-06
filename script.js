@@ -17,7 +17,6 @@ function getComputerChoice() {
 // this function returns integers between 0 to 2 (inclusive)
 let randomIntFromZeroAndTwo = () => Math.floor(Math.random() * 3)
 
-// console.log(getComputerChoice());
 function getUserChoice() {
 
     // run this loop until user enters a valid answer
@@ -66,6 +65,9 @@ function playRound() {
     console.log("User Chooses " + userChoice);
     console.log("Computer Chooses " + computerChoice);
 
+    // for each of these combinations below, it returns the userWin(), userLose(), or userTie() function. The first two functions specifically return a value of 0 or 1. 0 == computer should gain point. 1 == user should gain a point. 
+    // This change was made since the userScore and computerScore variables were moved from global scope to within the playGame() function. 
+
     // user enters rock
     if (userChoice === "rock") {
         // computer enters scissors
@@ -108,14 +110,14 @@ function playRound() {
 }
 
 // this function is called when the user wins.
-// it adds a point to the user and prints a string to console
+// it returns 1 signifying that the user should gain a point
 function userWin(userChoice, computerChoice) {
     console.log("You win! " + userChoice + " beats " + computerChoice);
     return 1;
 }
 
 // this function is called when the computer wins.
-// it adds a point to the computer and prints a string to console
+// it returns 1 signifying that the computer should gain a point
 function userLose(userChoice, computerChoice) {
     console.log("You lose! " + computerChoice + " beats " + userChoice);
     return 0;
@@ -127,27 +129,49 @@ function userTie(userChoice, computerChoice) {
     console.log("Tie! " + userChoice + " is equal to " + computerChoice);
 }
 
+// this function controls the entire multi-round game 
 function playGame() {
+    // initialize the score values to 0
     let userScore = 0;
     let computerScore = 0;
 
+    // set starting round and declare result
     let round = 1;
     let result;
+
+    // we want the game to run for 5 rounds.
     while (round <= 5) {
+        console.log("----- START OF ROUND -----")
+
+        // store the result of playRound() in result. A result of 1 means the user gained a point, and a result of 0 means the computer gained a point.
         result = playRound();
-        //console.log(result)
+        
         if (result == 1) {
             userScore++;
         } else if (result == 0) {
             computerScore++;
         }
+
+        // advance the round and set the result to null so that if the next round results in a tie, a point doesn't get incorrectly added to either the user or player
         round++;
         result = null;
 
+        console.log("----- END OF ROUND -----")
         console.log("User Score: " + userScore);
         console.log("Computer Score: " + computerScore);
 
     }
+
+    console.log("----- MATCH OVER! -----")
+    if (userScore == computerScore) {
+        console.log("Tie match! Both you and the computer scored: " + userScore);
+    } else if (userScore > computerScore) {
+        console.log("You win! You scored " + userScore + " points and the computer scored " + computerScore + " points!")
+    } else {
+        console.log("You lose! You scored " + userScore + " points and the computer scored " + computerScore + " points!")
+
+    }
+
 }
 
-playGame();
+// playGame();
