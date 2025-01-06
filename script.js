@@ -68,47 +68,41 @@ function playRound() {
 
     // user enters rock
     if (userChoice === "rock") {
-
         // computer enters scissors
         if (computerChoice === "scissors") {
-            userWin(userChoice, computerChoice);
+            return userWin(userChoice, computerChoice);
         } else if (computerChoice === "paper") {
             // computer enters paper
-            userLose(userChoice, computerChoice);
+            return userLose(userChoice, computerChoice);
         } else {
             // computer enters rock
-            userTie(userChoice, computerChoice);
+            return userTie(userChoice, computerChoice);
         }
-
-        
 
         // user enters paper
     } else if (userChoice === "paper") {
-
         // computer enters rock
         if (computerChoice === "rock") {
-            userWin(userChoice, computerChoice);
+            return userWin(userChoice, computerChoice);
         } else if (computerChoice === "scissors") {
             // computer enters scissors
-            userLose(userChoice, computerChoice);
+            return userLose(userChoice, computerChoice);
         } else {
             // computer enters paper
-            userTie(userChoice, computerChoice);
+            return userTie(userChoice, computerChoice);
         }
-
 
         // user enters scissors
     } else {
-
         // computer enters paper
         if (computerChoice === "paper") {
-            userWin(userChoice, computerChoice);
+            return userWin(userChoice, computerChoice);
         } else if (computerChoice === "rock") {
             // computer enters rock
-            userLose(userChoice, computerChoice);
+            return userLose(userChoice, computerChoice);
         } else {
             // computer enters scissors
-            userTie(userChoice, computerChoice);
+            return userTie(userChoice, computerChoice);
         }
     }
 }
@@ -116,15 +110,15 @@ function playRound() {
 // this function is called when the user wins.
 // it adds a point to the user and prints a string to console
 function userWin(userChoice, computerChoice) {
-    userScore++;
     console.log("You win! " + userChoice + " beats " + computerChoice);
+    return 1;
 }
 
 // this function is called when the computer wins.
 // it adds a point to the computer and prints a string to console
 function userLose(userChoice, computerChoice) {
-    computerScore++;
     console.log("You lose! " + computerChoice + " beats " + userChoice);
+    return 0;
 }
 
 // this function is called when the user and computer tie.
@@ -138,15 +132,22 @@ function playGame() {
     let computerScore = 0;
 
     let round = 1;
+    let result;
     while (round <= 5) {
-        playRound();
-
+        result = playRound();
+        //console.log(result)
+        if (result == 1) {
+            userScore++;
+        } else if (result == 0) {
+            computerScore++;
+        }
         round++;
+        result = null;
+
+        console.log("User Score: " + userScore);
+        console.log("Computer Score: " + computerScore);
+
     }
 }
 
 playGame();
-
-// currently, the userWin(), userLose(), and userTie() funcs return a string saying who won with what selections. It also attempts to increment the score vars from those funcs, but cannot access them since the score vars have been moved into the playGame() function.
-
-// my idea is to pass the user and computer scores into the playRound() funcs along with the user and computer selections. So at the end of the playRound(), we can modify the scores based on the winner (via the selections)
