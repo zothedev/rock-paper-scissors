@@ -23,7 +23,7 @@ function getUserChoice() {
     while (true) {
         // ask the user to choose a number 0 to 2, corresponding to rock, paper, or scissors. convert this value to number.
         let userChoice = +(prompt("Please enter: \n0 for Rock, \n1 for Paper, \nor 2 for Scissors!", 0));
-    
+
         // verify that userChoice is valid using a helper function
         if (isValidAnswer(userChoice)) {
             // return rock, paper, or scissors based on user input
@@ -63,61 +63,75 @@ function playRound() {
     console.log("User Chooses " + userChoice);
     console.log("Computer Chooses " + computerChoice);
 
+    let didUserWin = null;
+
+    // the difference of length between the user and computer choices is the algorithm im using to determine round winners without using multiple nested conditional statements
+    choiceLengthDiff = userChoice.length - computerChoice.length;
+
     // round result: tie
-    if (userChoice === computerChoice) {
-        userTie(userChoice, computerChoice);
+    if (choiceLengthDiff === 0) {
+        printUserTie(userChoice, computerChoice);
         return;
     }
 
-    // user enters rock
-    if (userChoice === "rock") {
-        // computer enters scissors
-        if (computerChoice === "scissors") {
-            return userWin(userChoice, computerChoice);
-        } else if (computerChoice === "paper") {
-            // computer enters paper
-            return userLose(userChoice, computerChoice);
-        }
+    switch (choiceLengthDiff) {
+        // user enters rock, computer entered scissors- user wins
+        case -4:
+            printUserWin(userChoice, computerChoice);
+            break;
 
-        // user enters paper
-    } else if (userChoice === "paper") {
-        // computer enters rock
-        if (computerChoice === "rock") {
-            return userWin(userChoice, computerChoice);
-        } else if (computerChoice === "scissors") {
-            // computer enters scissors
-            return userLose(userChoice, computerChoice);
-        }
+        // user enters rock, computer entered paper- user loses
+        case -1:
+            printUserLose(userChoice, computerChoice);
+            break;
 
-        // user enters scissors
-    } else {
-        // computer enters paper
-        if (computerChoice === "paper") {
-            return userWin(userChoice, computerChoice);
-        } else if (computerChoice === "rock") {
-            // computer enters rock
-            return userLose(userChoice, computerChoice);
-        }
+        // user enters paper, computer entered rock- user wins
+        case 1:
+            printUserWin(userChoice, computerChoice);
+            break;
+
+        // user enters paper, computer entered scissors- user loses
+        case -3:
+            printUserLose(userChoice, computerChoice);
+            break;
+
+        // user enters scissors, computer entered paper- user wins
+        case 3:
+            printUserWin(userChoice, computerChoice);
+            break;
+
+        // user enters scissors, computer entered rock- user wins
+        case 4:
+            printUserLose(userChoice, computerChoice);
+            break;
     }
+
+    // user win numbers
+    if (choiceLengthDiff === -4 || 
+        choiceLengthDiff === 1 || 
+        choiceLengthDiff === 3 ) {
+            didUserWin = true;
+        } else {
+            didUserWin = false;
+        }
+        return didUserWin;
 }
 
 // this function is called when the user wins.
 // it returns 1 signifying that the user should gain a point
-function userWin(userChoice, computerChoice) {
+function printUserWin(userChoice, computerChoice) {
     console.log("You win! " + userChoice + " beats " + computerChoice);
-    return 1;
 }
 
 // this function is called when the computer wins.
 // it returns 1 signifying that the computer should gain a point
-function userLose(userChoice, computerChoice) {
+function printUserLose(userChoice, computerChoice) {
     console.log("You lose! " + computerChoice + " beats " + userChoice);
-    return 0;
 }
 
 // this function is called when the user and computer tie.
 // it prints a string to console
-function userTie(userChoice, computerChoice) {
+function printUserTie(userChoice, computerChoice) {
     console.log("Tie! " + userChoice + " is equal to " + computerChoice);
 }
 
@@ -129,29 +143,25 @@ function playGame() {
 
     // set starting round and declare result
     let round = 1;
-    let result;
+    let didUserWin;
 
     // we want the game to run for 5 rounds.
     while (round <= 5) {
-        console.log("----- START OF ROUND -----")
+        console.log(`----- START OF ROUND ${round} -----`)
 
-        // store the result of playRound() in result. A result of 1 means the user gained a point, and a result of 0 means the computer gained a point.
-        result = playRound();
-        
-        if (result == 1) {
+        didUserWin = playRound();
+
+        if (didUserWin) {
             userScore++;
-        } else if (result == 0) {
-            computerScore++;
+        } else if (didUserWin === false) {
+            computerScore++
         }
 
-        // advance the round and set the result to null so that if the next round results in a tie, a point doesn't get incorrectly added to either the user or player
-        round++;
-        result = null;
-
-        console.log("----- END OF ROUND -----")
+        console.log(`----- END OF ROUND ${round} -----`)
         console.log("User Score: " + userScore);
         console.log("Computer Score: " + computerScore);
 
+        round++;
     }
 
     console.log("----- MATCH OVER! -----")
@@ -161,9 +171,7 @@ function playGame() {
         console.log("You win! You scored " + userScore + " points and the computer scored " + computerScore + " points!")
     } else {
         console.log("You lose! You scored " + userScore + " points and the computer scored " + computerScore + " points!")
-
     }
-
 }
 
-// playGame();
+playGame();
