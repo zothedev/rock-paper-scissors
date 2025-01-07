@@ -39,12 +39,12 @@ function getUserChoice() {
 **Problem:** "I need to take the `userChoice` and `computerChoice` and pass them into a function that handles a single round of play. This function should handle playing the round, incrementing the round's winner score, and logging a winner in the console."
 
 ```
-generate user choice by calling `getUserChoice()`
-generate computer choice by calling `getComputerChoice()`
-Display these selections to the console
-Using If-Else statements, determine who won based on the selections.
-print who won to the console.
-return 0 for a computer win, and 1 for a user win
+generate user choice by calling `getUserChoice()`.
+generate computer choice by calling `getComputerChoice()`.
+Display these selections to the console.
+Using the difference in length of `userChoice` and `computerChoice`, determine the winner of the round.
+Print who won to the console.
+Modify the `didUserWin` boolean based on winner and return it.
 ```
 
 
@@ -54,11 +54,14 @@ return 0 for a computer win, and 1 for a user win
 
 ```
 function playRound() {
-    declare userScore at 0
-    declare computerScore at 0
+    declare userScore at 0.
+    declare computerScore at 0.
 
-    declare round to 1
+    declare round to 1.
     while round is less than or equal to 5:
-        playRound()
-        modify the playRound() function to include the userSelection and computerSelection within the function, instead of in global scope.
+        playRound().
+        Update score variables based on winner.
+        Display choices and results to user.
+        Increment round variable.
 }
+```
