@@ -70,39 +70,39 @@ function playRound() {
 
     // round result: tie
     if (choiceLengthDiff === 0) {
-        printUserTie(userChoice, computerChoice);
+        console.log(`Tie game! Both players choose ${userChoice}`);
         return;
     }
 
     switch (choiceLengthDiff) {
         // user enters rock, computer entered scissors- user wins
         case -4:
-            printUserWin(userChoice, computerChoice);
+            console.log(`You win! ${userChoice} beats ${computerChoice}`);
             break;
 
         // user enters rock, computer entered paper- user loses
         case -1:
-            printUserLose(userChoice, computerChoice);
+            console.log(`You lose! ${computerChoice} beats ${userChoice}`);
             break;
 
         // user enters paper, computer entered rock- user wins
         case 1:
-            printUserWin(userChoice, computerChoice);
+            console.log(`You win! ${userChoice} beats ${computerChoice}`);
             break;
 
         // user enters paper, computer entered scissors- user loses
         case -3:
-            printUserLose(userChoice, computerChoice);
+            console.log(`You lose! ${computerChoice} beats ${userChoice}`);
             break;
 
         // user enters scissors, computer entered paper- user wins
         case 3:
-            printUserWin(userChoice, computerChoice);
+            console.log(`You win! ${userChoice} beats ${computerChoice}`);
             break;
 
         // user enters scissors, computer entered rock- user wins
         case 4:
-            printUserLose(userChoice, computerChoice);
+            console.log(`You lose! ${computerChoice} beats ${userChoice}`);
             break;
     }
 
@@ -115,24 +115,6 @@ function playRound() {
             didUserWin = false;
         }
         return didUserWin;
-}
-
-// this function is called when the user wins.
-// it returns 1 signifying that the user should gain a point
-function printUserWin(userChoice, computerChoice) {
-    console.log("You win! " + userChoice + " beats " + computerChoice);
-}
-
-// this function is called when the computer wins.
-// it returns 1 signifying that the computer should gain a point
-function printUserLose(userChoice, computerChoice) {
-    console.log("You lose! " + computerChoice + " beats " + userChoice);
-}
-
-// this function is called when the user and computer tie.
-// it prints a string to console
-function printUserTie(userChoice, computerChoice) {
-    console.log("Tie! " + userChoice + " is equal to " + computerChoice);
 }
 
 // this function controls the entire multi-round game 
