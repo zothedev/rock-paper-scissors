@@ -57,16 +57,17 @@ function isValidAnswer(userChoice) {
 // this function plays 1 round of rock paper scissors
 function playRound() {
 
-    // assign user and computer selections
     const userChoice = getUserChoice();
     const computerChoice = getComputerChoice();
 
-    // print the selections to console
     console.log("User Chooses " + userChoice);
     console.log("Computer Chooses " + computerChoice);
 
-    // for each of these combinations below, it returns the userWin(), userLose(), or userTie() function. The first two functions specifically return a value of 0 or 1. 0 == computer should gain point. 1 == user should gain a point. 
-    // This change was made since the userScore and computerScore variables were moved from global scope to within the playGame() function. 
+    // round result: tie
+    if (userChoice === computerChoice) {
+        userTie(userChoice, computerChoice);
+        return;
+    }
 
     // user enters rock
     if (userChoice === "rock") {
@@ -76,9 +77,6 @@ function playRound() {
         } else if (computerChoice === "paper") {
             // computer enters paper
             return userLose(userChoice, computerChoice);
-        } else {
-            // computer enters rock
-            return userTie(userChoice, computerChoice);
         }
 
         // user enters paper
@@ -89,9 +87,6 @@ function playRound() {
         } else if (computerChoice === "scissors") {
             // computer enters scissors
             return userLose(userChoice, computerChoice);
-        } else {
-            // computer enters paper
-            return userTie(userChoice, computerChoice);
         }
 
         // user enters scissors
@@ -102,9 +97,6 @@ function playRound() {
         } else if (computerChoice === "rock") {
             // computer enters rock
             return userLose(userChoice, computerChoice);
-        } else {
-            // computer enters scissors
-            return userTie(userChoice, computerChoice);
         }
     }
 }
