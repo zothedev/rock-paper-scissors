@@ -89,9 +89,6 @@ function playRound(userChoice) {
     results.appendChild(computerChoicePara);
     results.appendChild(roundResultPara);
 
-    console.log("User Chooses " + userChoice);
-    console.log("Computer Chooses " + computerChoice);
-
     let didUserWin = null;
 
     // the difference of length between the user and computer choices is the algorithm im using to determine round winners without using multiple nested conditional statements
