@@ -1,4 +1,10 @@
+let rockButton = document.querySelector('#rock');
+let paperButton = document.querySelector('#paper');
+let scissorsButton = document.querySelector('#scissors');
 
+rockButton.addEventListener("click", playRound("rock"));
+paperButton.addEventListener("click", playRound("paper"));
+scissorsButton.addEventListener("click", playRound("scissors"));
 
 
 function getComputerChoice() {
@@ -58,9 +64,8 @@ function isValidAnswer(userChoice) {
 }
 
 // this function plays 1 round of rock paper scissors
-function playRound() {
+function playRound(userChoice) {
 
-    const userChoice = getUserChoice();
     const computerChoice = getComputerChoice();
 
     console.log("User Chooses " + userChoice);
