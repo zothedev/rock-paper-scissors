@@ -1,10 +1,18 @@
+let results = document.querySelector("div")
+
 let rockButton = document.querySelector('#rock');
 let paperButton = document.querySelector('#paper');
 let scissorsButton = document.querySelector('#scissors');
 
-rockButton.addEventListener("click", playRound("rock"));
-paperButton.addEventListener("click", playRound("paper"));
-scissorsButton.addEventListener("click", playRound("scissors"));
+rockButton.addEventListener("click", () => {
+    playRound("rock");
+});
+paperButton.addEventListener("click", () => {
+    playRound("paper");
+});
+scissorsButton.addEventListener("click", () => {
+    playRound("scissors");
+});
 
 
 function getComputerChoice() {
@@ -24,7 +32,9 @@ function getComputerChoice() {
 }
 
 // this function returns integers between 0 to 2 (inclusive)
-let randomIntFromZeroAndTwo = () => Math.floor(Math.random() * 3)
+function randomIntFromZeroAndTwo() {
+    return Math.floor(Math.random() * 3);
+} 
 
 function getUserChoice() {
 
@@ -68,6 +78,17 @@ function playRound(userChoice) {
 
     const computerChoice = getComputerChoice();
 
+    let userChoicePara = document.createElement("p");
+    let computerChoicePara = document.createElement("p");
+    let roundResultPara = document.createElement("p");
+
+    userChoicePara.textContent = `User Chooses: ${userChoice}`;
+    computerChoicePara.textContent = `Computer Chooses: ${computerChoice}`;
+
+    results.appendChild(userChoicePara);
+    results.appendChild(computerChoicePara);
+    results.appendChild(roundResultPara);
+
     console.log("User Chooses " + userChoice);
     console.log("Computer Chooses " + computerChoice);
 
@@ -78,39 +99,39 @@ function playRound(userChoice) {
 
     // round result: tie
     if (choiceLengthDiff === 0) {
-        console.log(`Tie game! Both players choose ${userChoice}`);
+        roundResultPara.textContent = `Tie game! Both players choose ${userChoice}`
         return;
     }
 
     switch (choiceLengthDiff) {
         // user enters rock, computer entered scissors- user wins
         case -4:
-            console.log(`You win! ${userChoice} beats ${computerChoice}`);
+            roundResultPara.textContent = `You win! ${userChoice} beats ${computerChoice}`;
             break;
 
         // user enters rock, computer entered paper- user loses
         case -1:
-            console.log(`You lose! ${computerChoice} beats ${userChoice}`);
+            roundResultPara.textContent = `You lose! ${computerChoice} beats ${userChoice}`;
             break;
 
         // user enters paper, computer entered rock- user wins
         case 1:
-            console.log(`You win! ${userChoice} beats ${computerChoice}`);
+            roundResultPara.textContent = `You win! ${userChoice} beats ${computerChoice}`;
             break;
 
         // user enters paper, computer entered scissors- user loses
         case -3:
-            console.log(`You lose! ${computerChoice} beats ${userChoice}`);
+            roundResultPara.textContent = `You lose! ${computerChoice} beats ${userChoice}`;
             break;
 
         // user enters scissors, computer entered paper- user wins
         case 3:
-            console.log(`You win! ${userChoice} beats ${computerChoice}`);
+            roundResultPara.textContent = `You win! ${userChoice} beats ${computerChoice}`;
             break;
 
         // user enters scissors, computer entered rock- user wins
         case 4:
-            console.log(`You lose! ${computerChoice} beats ${userChoice}`);
+            roundResultPara.textContent = `You lose! ${computerChoice} beats ${userChoice}`;
             break;
     }
 
@@ -123,35 +144,38 @@ function playRound(userChoice) {
             didUserWin = false;
         }
         return didUserWin;
+
+    
+
 }
 
 // this function controls the entire multi-round game 
-function playGame() {
+// function playGame() {
     // initialize the score values to 0
-    let userScore = 0;
-    let computerScore = 0;
+    // let userScore = 0;
+    // let computerScore = 0;
 
     // set starting round and declare result
-    let round = 1;
-    let didUserWin;
+    // let round = 1;
+    // let didUserWin;
 
     // we want the game to run for 5 rounds.
     // while (round <= 5) {
-        console.log(`----- START OF ROUND ${round} -----`)
+        // console.log(`----- START OF ROUND ${round} -----`)
 
-        didUserWin = playRound();
+        // didUserWin = playRound();
 
-        if (didUserWin) {
-            userScore++;
-        } else if (didUserWin === false) {
-            computerScore++
-        }
+        // if (didUserWin) {
+        //     userScore++;
+        // } else if (didUserWin === false) {
+        //     computerScore++
+        // }
 
-        console.log(`----- END OF ROUND ${round} -----`)
-        console.log("User Score: " + userScore);
-        console.log("Computer Score: " + computerScore);
+        // console.log(`----- END OF ROUND ${round} -----`)
+        // console.log("User Score: " + userScore);
+        // console.log("Computer Score: " + computerScore);
 
-        round++;
+        // round++;
     // }
 
     // ~~end of game prints~~
@@ -164,6 +188,8 @@ function playGame() {
     // } else {
     //     console.log("You lose! You scored " + userScore + " points and the computer scored " + computerScore + " points!")
     // }
-}
+// }
 
-playGame();
+// playGame();
+
+// playRound();
