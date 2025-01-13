@@ -1,3 +1,6 @@
+
+
+
 function getComputerChoice() {
     // make computer choice (0 to 2)
     let number = randomIntFromZeroAndTwo();
@@ -128,7 +131,7 @@ function playGame() {
     let didUserWin;
 
     // we want the game to run for 5 rounds.
-    while (round <= 5) {
+    // while (round <= 5) {
         console.log(`----- START OF ROUND ${round} -----`)
 
         didUserWin = playRound();
@@ -144,16 +147,18 @@ function playGame() {
         console.log("Computer Score: " + computerScore);
 
         round++;
-    }
+    // }
 
-    console.log("----- MATCH OVER! -----")
-    if (userScore == computerScore) {
-        console.log("Tie match! Both you and the computer scored: " + userScore);
-    } else if (userScore > computerScore) {
-        console.log("You win! You scored " + userScore + " points and the computer scored " + computerScore + " points!")
-    } else {
-        console.log("You lose! You scored " + userScore + " points and the computer scored " + computerScore + " points!")
-    }
+    // ~~end of game prints~~
+
+    // console.log("----- MATCH OVER! -----")
+    // if (userScore == computerScore) {
+    //     console.log("Tie match! Both you and the computer scored: " + userScore);
+    // } else if (userScore > computerScore) {
+    //     console.log("You win! You scored " + userScore + " points and the computer scored " + computerScore + " points!")
+    // } else {
+    //     console.log("You lose! You scored " + userScore + " points and the computer scored " + computerScore + " points!")
+    // }
 }
 
 playGame();
