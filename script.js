@@ -10,24 +10,24 @@ let roundResultPara = document.createElement("p");
 selections.style.display = "none";
 scores.style.display = "none";
 
-
 // if user selects button x, playRound(x) is called with x as the user selection
 selections.addEventListener("click", (event) => {
     let target = event.target;
 
     switch (target.id) {
         case "rock":
-            playRound("rock");
+            didUserWin = playRound("rock");
             break;
         case "paper":
-            playRound("paper");
+            didUserWin = playRound("paper");
             break;
         case "scissors":
-            playRound("scissors");
+            didUserWin = playRound("scissors");
             break;
     }
 });
 
+// returns "rock", "paper", or "scissors", randomly.
 function getComputerChoice() {
     // make computer choice (0 to 2)
     let number = randomIntFromZeroAndTwo();
@@ -47,20 +47,6 @@ function getComputerChoice() {
 // this function returns integers between 0 to 2 (inclusive)
 function randomIntFromZeroAndTwo() {
     return Math.floor(Math.random() * 3);
-}
-
-// this function returns true only if the userChoice is valid (0 to 2)
-function isValidAnswer(userChoice) {
-    // return false if userChoice is not a number
-    if (Number.isNaN(userChoice)) {
-        return false;
-    }
-    // return false if the userChoice is outside of 0 to 2 (inclusive)
-    if (userChoice > 2 || userChoice < 0) {
-        return false;
-    }
-    // otherwise, userChoice is valid - return true.
-    return true;
 }
 
 // this function plays 1 round of rock paper scissors
@@ -141,7 +127,6 @@ function playGame() {
 
     // set starting round and declare result
     let round = 1;
-    let didUserWin;
 
     let startGameBtn = document.querySelector("button");
 
@@ -150,5 +135,10 @@ function playGame() {
         selections.style.display = "block";
         scores.style.display = "block";
     });
+
+    while (round <= 5) {
+
+    }
+
 }
 playGame();
