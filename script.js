@@ -7,26 +7,6 @@ let userChoicePara = document.createElement("p");
 let computerChoicePara = document.createElement("p");
 let roundResultPara = document.createElement("p");
 
-selections.style.display = "none";
-scores.style.display = "none";
-
-// if user selects button x, playRound(x) is called with x as the user selection
-selections.addEventListener("click", (event) => {
-    let target = event.target;
-
-    switch (target.id) {
-        case "rock":
-            didUserWin = playRound("rock");
-            break;
-        case "paper":
-            didUserWin = playRound("paper");
-            break;
-        case "scissors":
-            didUserWin = playRound("scissors");
-            break;
-    }
-});
-
 // returns "rock", "paper", or "scissors", randomly.
 function getComputerChoice() {
     // make computer choice (0 to 2)
@@ -72,7 +52,7 @@ function playRound(userChoice) {
 
     // round result: tie
     if (choiceLengthDiff === 0) {
-        roundResultPara.textContent = `Tie game! Both players choose ${userChoice}`
+        roundResultPara.textContent = `Tie game! Both players choose ${userChoice}`;
         return;
     }
 
@@ -119,26 +99,53 @@ function playRound(userChoice) {
     return didUserWin;
 }
 
-// this function controls the entire multi-round game 
 function playGame() {
-    // initialize the score values to 0
     let userScore = 0;
     let computerScore = 0;
 
-    // set starting round and declare result
-    let round = 1;
+    // if user selects button x, playRound(x) is called with x as the user selection
+    selections.addEventListener("click", (event) => {
+        let target = event.target;
+        let didUserWin;
 
-    let startGameBtn = document.querySelector("button");
+        switch (target.id) {
+            case "rock":
+                didUserWin = playRound("rock");
+                break;
+            case "paper":
+                didUserWin = playRound("paper");
+                break;
+            case "scissors":
+                didUserWin = playRound("scissors");
+                break;
+        }
+        // console.log(didUserWin);
+        assignScore(didUserWin);
 
-    startGameBtn.addEventListener("click", e => {
-        startGameBtn.style.display = "none";
-        selections.style.display = "block";
-        scores.style.display = "block";
     });
 
-    while (round <= 5) {
+    function assignScore(didUserWin) {
+
+
+        // console.log(didUserWin);
+
+        if (didUserWin) userScore++;
+        if (didUserWin === false) computerScore++;
+
+        userScorePara.textContent = `User Score: ${userScore}`;
+        computerScorePara.textContent = `Computer Score: ${computerScore}`;
+
+        // console.log(userScore);
+        // console.log(computerScore);
 
     }
 
+
+
+
+
+
 }
+
 playGame();
+
