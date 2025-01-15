@@ -6,6 +6,7 @@ let computerScorePara = document.querySelector("#computerScore");
 let userChoicePara = document.createElement("p");
 let computerChoicePara = document.createElement("p");
 let roundResultPara = document.createElement("p");
+let roundCount = document.querySelector("#roundCount");
 
 // returns "rock", "paper", or "scissors", randomly.
 function getComputerChoice() {
@@ -102,6 +103,7 @@ function playRound(userChoice) {
 function playGame() {
     let userScore = 0;
     let computerScore = 0;
+    let round = 1;
 
     // if user selects button x, playRound(x) is called with x as the user selection
     selections.addEventListener("click", (event) => {
@@ -121,6 +123,12 @@ function playGame() {
         }
         // console.log(didUserWin);
         assignScore(didUserWin);
+        increaseRound();
+        if (round >= 6) {
+            selections.style.display = "none";
+            console.log('inside');
+            showGameOver();
+        }
 
     });
 
@@ -140,12 +148,29 @@ function playGame() {
 
     }
 
+    function increaseRound() {
+        round++;
+        
+        roundCount.textContent = `Round: ${round}`;
+    }
 
+    
 
+    function showGameOver() {
+        let gameOverPara = document.createElement("p");
 
-
-
+        if (userScore > computerScore) {
+            gameOverPara.textContent = `Game over! You beat the computer with a final score of ${userScore} to ${computerScore}`;
+        } else if (userScore < computerScore) {
+            gameOverPara.textContent = `Game over! You lost to the computer with a final score of ${computerScore} to ${userScore}`;
+        } else {
+            gameOverPara.textContent = `Game over! You and the computer tied with a final score of ${computerScore} to ${userScore}`;
+        }
+        results.appendChild(gameOverPara);
+    }
 }
+
+
 
 playGame();
 
