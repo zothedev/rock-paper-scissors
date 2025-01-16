@@ -1,4 +1,8 @@
-# Rock Paper Scissors Project
+# Rock Paper Scissors Project v1.1
+In this update, I utilized the Document Object Model (DOM) and events through javascript to build a user interface (UI). I also applied some basic styling without going overboard- as I want to save a lot of my hard work for resume-worthy projects.
+
+
+# Rock Paper Scissors Project v1.0
 This is my first project in Javascript - a simple Rock Paper Scissors game played entirely in the console. You play five rounds against the computer. Whoever has the highest score after five rounds wins!
 
 ## Demonstrated Skills:
