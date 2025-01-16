@@ -1,9 +1,3 @@
-// todo:
-
-// new game button after game ends
-// assign global vars below accordingly
-// add line breaks to make scores and results easier to read
-
 let results = document.querySelector(".results");
 let selections = document.querySelector(".selections");
 let userScorePara = document.querySelector("#userScore");
