@@ -1,3 +1,9 @@
+// todo:
+
+// new game button after game ends
+// assign global vars below accordingly
+// add line breaks to make scores and results easier to read
+
 let results = document.querySelector(".results");
 let selections = document.querySelector(".selections");
 let userScorePara = document.querySelector("#userScore");
@@ -7,6 +13,7 @@ let userChoicePara = document.createElement("p");
 let computerChoicePara = document.createElement("p");
 let roundResultPara = document.createElement("p");
 let roundCount = document.querySelector("#roundCount");
+
 
 // returns "rock", "paper", or "scissors", randomly.
 function getComputerChoice() {
@@ -36,6 +43,7 @@ function playRound(userChoice) {
     userChoicePara.textContent = "";
     computerChoicePara.textContent = "";
     roundResultPara.textContent = "";
+    roundResultPara.style.fontWeight = 'bold';
 
     const computerChoice = getComputerChoice();
 
@@ -53,7 +61,7 @@ function playRound(userChoice) {
 
     // round result: tie
     if (choiceLengthDiff === 0) {
-        roundResultPara.textContent = `Tie game! Both players choose ${userChoice}`;
+        roundResultPara.textContent = `Tie! Both players choose ${userChoice}`;
         return;
     }
 
@@ -129,7 +137,6 @@ function playGame() {
             console.log('inside');
             showGameOver();
         }
-
     });
 
     function assignScore(didUserWin) {
@@ -150,14 +157,17 @@ function playGame() {
 
     function increaseRound() {
         round++;
-        
-        roundCount.textContent = `Round: ${round}`;
+        if (round > 5) {
+            roundCount.textContent = `End of Game!`;
+        } else {
+            roundCount.textContent = `Round: ${round}`;
+        }
     }
-
-    
 
     function showGameOver() {
         let gameOverPara = document.createElement("p");
+        let sep = document.createElement("p");
+        sep.textContent = `-----------------------------------------`
 
         if (userScore > computerScore) {
             gameOverPara.textContent = `Game over! You beat the computer with a final score of ${userScore} to ${computerScore}`;
@@ -166,11 +176,15 @@ function playGame() {
         } else {
             gameOverPara.textContent = `Game over! You and the computer tied with a final score of ${computerScore} to ${userScore}`;
         }
+        results.appendChild(sep);
         results.appendChild(gameOverPara);
+        let newGameBtn = document.createElement("button");
+        newGameBtn.textContent = "Start Over?"
+        newGameBtn.addEventListener("click", () => {
+            window.location.reload();
+        });
+        results.appendChild(newGameBtn);
     }
 }
-
-
-
 playGame();
 
